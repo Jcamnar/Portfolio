@@ -1,11 +1,11 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* (TODO EL BLOQUE DE CSS ORIGINAL AQUÍ SIN CAMBIOS) */
-:root {
+        :root {
             --primary-color: #1e3a8a;
             --secondary-color: #3b82f6;
             --accent-color: #60a5fa;
@@ -676,3 +676,4 @@
                 padding: 2rem 1.5rem;
             }
         }
+    </style>
