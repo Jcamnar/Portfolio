@@ -57,7 +57,6 @@
     <section id="habilidades" class="reveal">
         <h2 class="section-title">Habilidades y Competencias</h2>
         <div class="skills-grid">
-            <!-- Contenido de tarjetas de habilidades -->
             <div class="skill-card">
                 <div class="skill-icon"><i class="fas fa-tasks"></i></div>
                 <h3>Metodología Scrum</h3>
@@ -105,7 +104,7 @@
                 <div class="progress-bar">
                     <div class="progress-fill" data-progress="88"></div>
                 </div>
-                </div>
+            </div>
         </div>
     </section>
 
@@ -113,7 +112,51 @@
     <section id="formacion" class="reveal">
         <h2 class="section-title">Formación y Certificaciones</h2>
         <div class="education-grid">
-            <!-- Contenido de tarjetas de educación -->
+            <div class="education-card">
+                <div class="education-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="education-info">
+                    <h3>Técnico en Procesamiento de Pruebas de Software</h3>
+                    <p class="education-date">SENA | 29 Julio, 2025</p>
+                    <p>Formación técnica integral en metodologías de testing, planificación y ejecución de pruebas de software.</p>
+                    <button class="download-btn"><i class="fas fa-download"></i> Descargar</button>
+                </div>
+            </div>
+            <div class="education-card">
+                <div class="education-icon"><i class="fas fa-certificate"></i></div>
+                <div class="education-info">
+                    <h3>Manejo de Pruebas de Software</h3>
+                    <p class="education-date">26 Septiembre, 2025</p>
+                    <p>Curso especializado en técnicas avanzadas de testing y gestión de casos de prueba.</p>
+                    <button class="download-btn"><i class="fas fa-download"></i> Descargar</button>
+                </div>
+            </div>
+            <div class="education-card">
+                <div class="education-icon"><i class="fas fa-certificate"></i></div>
+                <div class="education-info">
+                    <h3>Proceso para Software de Calidad</h3>
+                    <p class="education-date">05 Abril, 2024</p>
+                    <p>Fundamentos de aseguramiento de calidad y mejores prácticas en el desarrollo de software.</p>
+                    <button class="download-btn"><i class="fas fa-download"></i> Descargar</button>
+                </div>
+            </div>
+            <div class="education-card">
+                <div class="education-icon"><i class="fas fa-certificate"></i></div>
+                <div class="education-info">
+                    <h3>Calidad en el Desarrollo de Software</h3>
+                    <p class="education-date">11 Octubre, 2023</p>
+                    <p>Principios de calidad aplicados durante todo el ciclo de vida del desarrollo de software.</p>
+                    <button class="download-btn"><i class="fas fa-download"></i> Descargar</button>
+                </div>
+            </div>
+            <div class="education-card">
+                <div class="education-icon"><i class="fas fa-certificate"></i></div>
+                <div class="education-info">
+                    <h3>Aplicación de la Calidad en el Desarrollo de Software</h3>
+                    <p class="education-date">10 Octubre, 2023</p>
+                    <p>Aplicación práctica de estándares de calidad en proyectos de desarrollo de software.</p>
+                    <button class="download-btn"><i class="fas fa-download"></i> Descargar</button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -121,7 +164,21 @@
     <section id="hobbies" class="reveal">
         <h2 class="section-title">Hobbies & Intereses</h2>
         <div class="hobbies-grid">
-            <!-- Contenido de hobbies -->
+            <div class="hobby-card">
+                <div class="hobby-icon"><i class="fas fa-running"></i></div>
+                <h3>Correr</h3>
+                <p>La disciplina y perseverancia que requiere correr me ayudan a mantener el enfoque y la determinación.</p>
+            </div>
+            <div class="hobby-card">
+                <div class="hobby-icon"><i class="fas fa-cube"></i></div>
+                <h3>Cubo Rubik</h3>
+                <p>Resolver el cubo desarrolla mi pensamiento lógico, paciencia y habilidad para encontrar patrones.</p>
+            </div>
+            <div class="hobby-card">
+                <div class="hobby-icon"><i class="fas fa-film"></i></div>
+                <h3>Cine</h3>
+                <p>El cine me permite explorar diferentes perspectivas, historias y apreciar la atención al detalle visual.</p>
+            </div>
         </div>
     </section>
 
@@ -130,20 +187,37 @@
         <h2 class="section-title">Contacto</h2>
         <div class="contact-container">
             <form id="contactForm">
-                <!-- Campos del formulario -->
+                <div class="form-group">
+                    <label for="name">Nombre completo</label>
+                    <input type="text" id="name" name="name" required>
+                    <span class="error" id="nameError">Por favor ingresa tu nombre</span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error" id="emailError">Por favor ingresa un email válido</span>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Asunto</label>
+                    <input type="text" id="subject" name="subject" required>
+                    <span class="error" id="subjectError">Por favor ingresa el asunto</span>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <span class="error" id="messageError">Por favor ingresa tu mensaje</span>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                </button>
             </form>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="social-links">
-            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="#" target="_blank"><i class="fas fa-envelope"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p>&copy; 2025 Tu Nombre. Todos los derechos reservados.</p>
+        
+        <p>&copy; 2025. Todos los derechos reservados.</p>
     </footer>
 
     <!-- Botón volver arriba -->
