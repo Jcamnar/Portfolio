@@ -1,4 +1,4 @@
-// ========== TYPEWRITER EFFECT ==========
+    // ========== TYPEWRITER EFFECT ==========
 const phrases = [
     "Comprometido con la calidad del software",
     "Especializado en pruebas manuales",
