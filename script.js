@@ -387,7 +387,7 @@ document.head.appendChild(style);
 // ========== DOWNLOAD CERTIFICATE BUTTONS ==========
 downloadBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
-        e.preventDefault();
+        //e.preventDefault();
         const originalText = btn.innerHTML;
         const certificateName = btn.closest('.education-info').querySelector('h3').textContent;
 
@@ -425,9 +425,6 @@ downloadBtns.forEach(btn => {
             btn.style.background = '';
             btn.disabled = false;
         }, 2000);
-    });
-});
-
     });
 });
 
