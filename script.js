@@ -396,22 +396,51 @@ downloadBtns.forEach(btn => {
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Descargando...';
         btn.disabled = true;
         
-        // Simulate download
+    const downloadBtns = document.querySelectorAll('.download-btn');
+
+downloadBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const originalText = btn.innerHTML;
+        const certificateName = btn.closest('.education-info').querySelector('h3').textContent;
+
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Abriendo...';
+        btn.disabled = true;
+
+        // Definir rutas a tus PDFs según el título del certificado
+        const pdfs = {
+            "Técnico en Procesamiento de Pruebas de Software": "assets/PROCESAMIENTO EN PRUEBAS DE SOFTWARE.pdf",
+            "Manejo de Pruebas de Software": "assets/MANEJO DE PRUEBAS DE SOFTWARE..pdf",
+            "Proceso para Software de Calidad": "assets/PROCESOS PARA PRUEBAS DE SOFTWARE.pdf",
+            "Calidad en el Desarrollo de Software": "assets/CALIDAD EN EL DESARROLLO DE SOFTWARE.pdf",
+            "Aplicación de la Calidad en el Desarrollo de Software": "assets/APLICACION DE LA CALIDAD DEL SOFTWARE EN EL PROCESO DE DESARROLLO.pdf"
+        };
+
+        const pdfURL = pdfs[certificateName];
+
+        if (pdfURL) {
+            // ✅ Opción 1: abrir en nueva pestaña sin descarga
+            window.open(pdfURL, '_blank');
+
+            // ✅ Opción 2: forzar descarga (si prefieres)
+            // const link = document.createElement('a');
+            // link.href = pdfURL;
+            // link.download = certificateName + '.pdf';
+            // link.click();
+
+            showNotification(`Certificado "${certificateName}" abierto correctamente`, 'success');
+        } else {
+            showNotification('No se encontró el archivo del certificado', 'error');
+        }
+
         setTimeout(() => {
-            btn.innerHTML = '<i class="fas fa-check-circle"></i> Descargado';
-            btn.style.background = '#10b981';
-            
-            showNotification(`Certificado "${certificateName}" descargado exitosamente`, 'success');
-            
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.style.background = '';
-                btn.disabled = false;
-            }, 2000);
-            
-            // Aquí puedes agregar la lógica real de descarga
-            // window.open('ruta-al-certificado.pdf', '_blank');
-        }, 1500);
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            btn.disabled = false;
+        }, 2000);
+    });
+});
+
     });
 });
 
