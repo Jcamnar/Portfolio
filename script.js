@@ -385,19 +385,6 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ========== DOWNLOAD CERTIFICATE BUTTONS ==========
-const downloadBtns = document.querySelectorAll('.download-btn');
-
-downloadBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const originalText = btn.innerHTML;
-        const certificateName = btn.closest('.education-info').querySelector('h3').textContent;
-        
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Descargando...';
-        btn.disabled = true;
-        
-    const downloadBtns = document.querySelectorAll('.download-btn');
-
 downloadBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
