@@ -220,17 +220,27 @@ contactForm.addEventListener('submit', (e) => {
     let isValid = true;
 
     // Validate name
-    const name = document.getElementById('name');
-    const nameError = document.getElementById('nameError');
-    if (name.value.trim() === '' || name.value.trim().length < 3) {
-        nameError.textContent = 'Por favor ingresa tu nombre completo (mínimo 3 caracteres)';
-        nameError.style.display = 'block';
-        name.style.borderColor = '#ef4444';
-        isValid = false;
-    } else {
-        nameError.style.display = 'none';
-        name.style.borderColor = '';
-    }
+const name = document.getElementById('name');
+const nameError = document.getElementById('nameError');
+
+// Expresión regular: solo letras y espacios (sin números ni símbolos)
+const nameRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+
+if (name.value.trim() === '' || name.value.trim().length < 3) {
+    nameError.textContent = 'Por favor ingresa tu nombre completo (mínimo 3 caracteres)';
+    nameError.style.display = 'block';
+    name.style.borderColor = '#ef4444';
+    isValid = false;
+} else if (!nameRegex.test(name.value.trim())) {
+    nameError.textContent = 'El nombre solo puede contener letras y espacios (sin números ni símbolos)';
+    nameError.style.display = 'block';
+    name.style.borderColor = '#ef4444';
+    isValid = false;
+} else {
+    nameError.style.display = 'none';
+    name.style.borderColor = '';
+}
+
 
     // Validate email
     const email = document.getElementById('email');
