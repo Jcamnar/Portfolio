@@ -216,9 +216,9 @@ const contactForm = document.getElementById('contactForm');
 
 contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     let isValid = true;
-    
+
     // Validate name
     const name = document.getElementById('name');
     const nameError = document.getElementById('nameError');
@@ -231,7 +231,7 @@ contactForm.addEventListener('submit', (e) => {
         nameError.style.display = 'none';
         name.style.borderColor = '';
     }
-    
+
     // Validate email
     const email = document.getElementById('email');
     const emailError = document.getElementById('emailError');
@@ -244,7 +244,7 @@ contactForm.addEventListener('submit', (e) => {
         emailError.style.display = 'none';
         email.style.borderColor = '';
     }
-    
+
     // Validate subject
     const subject = document.getElementById('subject');
     const subjectError = document.getElementById('subjectError');
@@ -256,7 +256,7 @@ contactForm.addEventListener('submit', (e) => {
         subjectError.style.display = 'none';
         subject.style.borderColor = '';
     }
-    
+
     // Validate message
     const message = document.getElementById('message');
     const messageError = document.getElementById('messageError');
@@ -269,50 +269,53 @@ contactForm.addEventListener('submit', (e) => {
         messageError.style.display = 'none';
         message.style.borderColor = '';
     }
-    
-   if (isValid) {
-    const formData = new FormData(contactForm);
 
-    fetch(contactForm.action, {
-        method: 'POST',
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-    })
-    .then(response => {
-        if (response.ok) {
-            const submitBtn = contactForm.querySelector('.submit-btn');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> <span>¡Mensaje Enviado Exitosamente!</span>';
-            submitBtn.style.background = '#10b981';
-            submitBtn.disabled = true;
+    if (isValid) {
+        // Enviar datos a Formspree
+        const formData = new FormData(contactForm);
 
-            showNotification('¡Gracias por contactarme! Te responderé pronto.', 'success');
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+            if (response.ok) {
+                const submitBtn = contactForm.querySelector('.submit-btn');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> <span>¡Mensaje Enviado Exitosamente!</span>';
+                submitBtn.style.background = '#10b981';
+                submitBtn.disabled = true;
 
-            setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.background = '';
-                submitBtn.disabled = false;
-                contactForm.reset();
-            }, 4000);
-        } else {
-            showNotification('Hubo un error al enviar el mensaje. Intenta nuevamente.', 'error');
-        }
-    })
-    .catch(() => {
-        showNotification('Error al conectar con el servidor. Intenta más tarde.', 'error');
-    });
-} else {
-    showNotification('Por favor corrige los errores en el formulario', 'error');
-}
+                showNotification('¡Gracias por contactarme! Te responderé pronto.', 'success');
 
-// Real-time validation
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                    contactForm.reset();
+                }, 4000);
+            } else {
+                showNotification('Hubo un error al enviar el mensaje. Intenta nuevamente.', 'error');
+            }
+        })
+        .catch(() => {
+            showNotification('Error al conectar con el servidor. Intenta más tarde.', 'error');
+        });
+    } else {
+        showNotification('Por favor corrige los errores en el formulario', 'error');
+    }
+}); // <-- cierre correcto del addEventListener
+
+// Real-time validation (DEBE estar FUERA del submit handler)
 const formInputs = contactForm.querySelectorAll('input, textarea');
 formInputs.forEach(input => {
     input.addEventListener('blur', () => {
         validateInput(input);
     });
-    
+
     input.addEventListener('input', () => {
+        // si el borde está en rojo (rgb(239, 68, 68)) volvemos a validar
         if (input.style.borderColor === 'rgb(239, 68, 68)') {
             validateInput(input);
         }
@@ -321,7 +324,9 @@ formInputs.forEach(input => {
 
 function validateInput(input) {
     const errorElement = document.getElementById(input.id + 'Error');
-    
+
+    if (!errorElement) return;
+
     if (input.id === 'name') {
         if (input.value.trim().length >= 3) {
             errorElement.style.display = 'none';
