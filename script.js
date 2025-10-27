@@ -270,27 +270,40 @@ contactForm.addEventListener('submit', (e) => {
         message.style.borderColor = '';
     }
     
-    if (isValid) {
-        // Success animation
-        const submitBtn = contactForm.querySelector('.submit-btn');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> <span>¡Mensaje Enviado Exitosamente!</span>';
-        submitBtn.style.background = '#10b981';
-        submitBtn.disabled = true;
-        
-        // Create success notification
-        showNotification('¡Gracias por contactarme! Te responderé pronto.', 'success');
-        
-        setTimeout(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.style.background = '';
-            submitBtn.disabled = false;
-            contactForm.reset();
-        }, 4000);
-    } else {
-        showNotification('Por favor corrige los errores en el formulario', 'error');
-    }
-});
+   if (isValid) {
+    const formData = new FormData(contactForm);
+
+    fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+        if (response.ok) {
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> <span>¡Mensaje Enviado Exitosamente!</span>';
+            submitBtn.style.background = '#10b981';
+            submitBtn.disabled = true;
+
+            showNotification('¡Gracias por contactarme! Te responderé pronto.', 'success');
+
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.background = '';
+                submitBtn.disabled = false;
+                contactForm.reset();
+            }, 4000);
+        } else {
+            showNotification('Hubo un error al enviar el mensaje. Intenta nuevamente.', 'error');
+        }
+    })
+    .catch(() => {
+        showNotification('Error al conectar con el servidor. Intenta más tarde.', 'error');
+    });
+} else {
+    showNotification('Por favor corrige los errores en el formulario', 'error');
+}
 
 // Real-time validation
 const formInputs = contactForm.querySelectorAll('input, textarea');
